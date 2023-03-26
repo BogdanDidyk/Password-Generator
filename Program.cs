@@ -23,6 +23,21 @@ namespace PasswordGenerator
         readonly string DIGITS;
         readonly string ALPHABET;
         readonly string SPECIAL_SYMBOLS;
+
+        public PasswordGenerator()
+        {
+            rnd = new Random();
+            DIGITS = "0123456789";
+            ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+            SPECIAL_SYMBOLS = " ~`@#$%^&*()_+-=[]{};'\\:\"|,./<>?";
+        }
+
+        public PasswordGenerator(string digits, string alphabet, string symbols): this()
+        {
+            DIGITS = digits;
+            ALPHABET = alphabet;
+            SPECIAL_SYMBOLS = symbols;
+        }
     }
 
     public class Program
