@@ -38,6 +38,35 @@ namespace PasswordGenerator
             ALPHABET = alphabet;
             SPECIAL_SYMBOLS = symbols;
         }
+
+        public string GeneratePassword(PasswordChars passwordChars, int passwordLength)
+        {
+            passwordLength = Math.Clamp(passwordLength, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH);
+            StringBuilder resultPassword = new StringBuilder(passwordLength);
+            string passwordCharSet = string.Empty;
+
+            if (passwordChars.HasFlag(PasswordChars.Alphabet))
+            {
+                passwordCharSet += ALPHABET + ALPHABET.ToUpper();
+            }
+
+            if (passwordChars.HasFlag(PasswordChars.Digits))
+            {
+                passwordCharSet += DIGITS;
+            }
+
+            if (passwordChars.HasFlag(PasswordChars.Symbols))
+            {
+                passwordCharSet += SPECIAL_SYMBOLS;
+            }
+
+            for (var i = 0; i < passwordLength; i++)
+            {
+                resultPassword.Append(passwordCharSet[rnd.Next(0, passwordCharSet.Length)]);
+            }
+
+            return resultPassword.ToString();
+        }
     }
 
     public class Program
