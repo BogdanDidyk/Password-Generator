@@ -73,7 +73,19 @@ namespace PasswordGenerator
     {
         public static void Main(string[] args)
         {
-            
+            PasswordGenerator password = new PasswordGenerator();
+            PasswordGenerator.PasswordChars chars = PasswordGenerator.PasswordChars.Symbols | PasswordGenerator.PasswordChars.Digits;
+
+            string rndPassword = password.GeneratePassword(chars, 10);
+            Console.WriteLine(rndPassword + "\n");
+
+            password = new PasswordGenerator("2617", "", "()[]{}<>+|^");
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine(password.GeneratePassword(chars, 7));
+            }
+
+            Console.ReadLine();
         }
     }
 }
